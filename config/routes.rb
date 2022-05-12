@@ -3,11 +3,13 @@ Rails.application.routes.draw do
     root 'homes#top'
     get "about"=> "homes#about"
     resources :items
+    resources :genres, only: [:index, :create, :edit, :update]
   end
 
   #devise for administrator
   #URL/admin?admin/sign_in..
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  devise_for :admin, skip: [:passwords] ,controllers: {
+
     sessions: "admin/sessions"
   }
 
