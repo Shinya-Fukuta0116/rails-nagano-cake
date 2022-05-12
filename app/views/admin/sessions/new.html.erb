@@ -2,18 +2,22 @@
   <h2>管理者ログイン</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :メールアドレス %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="mb-3 row">
+      <div class="field">
+        <%= f.label :メールアドレス %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", size: 40 %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :パスワード%>
-      <%= f.password_field :password, autocomplete: "current-password" %>
+    <div class="mb-3 row">
+      <div class="field">
+        <%= f.label :パスワード%>
+        <%= f.password_field :password, autocomplete: "current-password", size: 40 %>
+      </div>
     </div>
 
     <div class="actions">
-      <%= f.submit "Log in" %>
+      <%= f.submit 'ログイン', class:"btn btn-primary" %>
     </div>
   <% end %>
 <div/>
