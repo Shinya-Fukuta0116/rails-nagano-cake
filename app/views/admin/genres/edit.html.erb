@@ -1,0 +1,15 @@
+<div class = "container">
+  <div class = "row">
+    <div class ="col-md-6">
+      <h3>ジャンル編集</h3>
+          <br>
+      <%= form_with model: @genre, url: admin_genre_path, class: "genre_edit_form" do |f|%>
+        <div>
+          <%= f.label :ジャンル名 %>
+          <%= f.text_field :name %>
+          <%= f.submit "変更を保存", class: "btn btn-primary genre_edit_btn" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
