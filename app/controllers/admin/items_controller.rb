@@ -1,4 +1,6 @@
 class Admin::ItemsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
   end
 
@@ -17,4 +19,10 @@ class Admin::ItemsController < ApplicationController
 
   def update
   end
+
+  private
+
+    def item_params
+      params.require(:item).permit(:name, :image, :is_active, :price, :introduction, :genre_id)
+    end
 end
