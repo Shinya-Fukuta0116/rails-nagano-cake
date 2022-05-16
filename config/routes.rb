@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'orders/show'
+    get 'orders/update'
+  end
+  namespace :admin do
     root 'homes#top'
     get "about"=> "homes#about"
     resources :items
