@@ -1,2 +1,43 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class ="col-md-6">
+      <h3>商品編集</h3>
+          <br>
+      <%= form_with model: @item, url: admin_item_path, class: "genre_edit_form" do |f|%>
+        <div class="col-xs-3">
+          <%= f.label:商品画像, class:"col-xs-2" %>
+          <%= f.file_field :image, size:"250x250",accept: "image/*" %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= f.label:商品名, class:"col-xs-2" %>
+          <%= f.text_field :name, size:"56x5" %>
+        </div>
+        <div class = "form-group">
+          <div class ="align-top">
+            <%= f.label:商品説明, class:"col-xs-2" %>
+          </div>
+            <%= f.text_area :introduction, size:"55x5" %>
+          </div>
+          <div class="form-group">
+            <%= f.label:ジャンル, class:"col-xs-2" %>
+            <%= f.select(:genre_id, options_for_select([['---選択してください---', ''], ['ケーキ', '1'], ['プリン', '2'], ['焼き菓子', '3'], ['キャンディ', '4']]), {class: 'form-control'}) %>
+          </div>
+          <div class="form-group">
+            <%= f.label:税抜金額, class:"col-xs-2" %>
+            <%= f.number_field :price, in: 100.0..5000.0, step: 50.0, size:"56x5" %>
+            <%= f.label:円, class:"col-xs-2" %>
+          </div>
+          <div class="form-group">
+            <%= f.label:販売ステータス, class:"col-xs-2" %>
+            <%= f.radio_button :is_active, :true %>
+            <%= f.label:販売中, class:"col-xs-2" %>
+            <%= f.radio_button :is_active, :false %>
+            <%= f.label:販売停止中, class:"col-xs-2" %>
+          </div>
+          <%= f.submit "変更を保存", class: "btn btn-primary genre_edit_btn" %>
+        </div>
+          <% end %>
+    </div>
+  </div>
+</div>

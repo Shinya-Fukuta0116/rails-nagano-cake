@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'homes#top'
     get "about"=> "homes#about"
-    resources :items
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
   end
 
