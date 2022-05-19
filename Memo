@@ -1,0 +1,31 @@
+---controllerについて---
+new -> create -> show
+index -> update -> edit
+
+---select_tagよりcollection_select---
+<%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "--選択してください--"} %>
+
+---genre_id(外部キー)の読み込みがされない---
+belongs_to :genre(通常はこれでO.KだがN.Gだった場合）
+belongs_to :genre　optional: true(追加）
+validates :genre_id, presence: true(optionalだったので追記）
+
+---1:Nの確認---
+Genre(1) : Item(N)の場合
+has_many :items
+belongs_to :genre
+
+---statusならradio_button---
+<%= f.radio_button :is_active, :true %>
+<%= f.radio_button :is_active, :false %>
+
+<%= item.is_active ? '販売中' : '販売停止中' %>
+
+---migrateの編集方法---
+rails db:rollback (一個前に戻す）
+rails db:migrate:status(downになればswitched off状態)-->ファイル編集可
+rails db:migrateを行いstatusでupになっていれば完了
+
+---rails c---
+Item.find(1).destroy(id 1を特定削除）
+Item.destroy_all(Itemのデータ一括削除）
