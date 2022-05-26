@@ -1,0 +1,15 @@
+<div class="container">
+
+  <h2>本当に退会しますか？</h2>
+    <p>退会すると会員登録情報は<br>
+      これまでの購入履歴が閲覧できなくなります。<br>
+      退会する場合は、「退会する」をクリックして下さい。<br>
+    </p>
+  <div class="text-align left">
+    <%= link_to "退会しない", public_customers_path, class: "btn btn-primary" %>
+  </div>
+  <br>
+  <div class="text-align right">
+    <%= link_to "退会する", public_withdraw_path, method: :patch, class: "btn btn-danger" %>
+  </div>
+</div>

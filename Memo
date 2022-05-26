@@ -29,3 +29,32 @@ rails db:migrateを行いstatusでupになっていれば完了
 ---rails c---
 Item.find(1).destroy(id 1を特定削除）
 Item.destroy_all(Itemのデータ一括削除）
+
+---sign in, sign up後の遷移先の設定---
+application_controller.rbに記載（deviseが複数存在し一括で設定する場合）
+----sign in後----
+seesion_controller.rbに記載（各deviseに違う遷移先を設定する場合）
+-----sign in後-----
+registrations_controller.rbに記載
+------記載の仕方------
+def after_sign_up_path_for(resource)
+  #パス名_path
+
+---routes記載の注意点
+Devise １番上
+get 2番目
+resources　３番
+
+---current_customerの受渡し---
+1.registrations_controllerに下記パラメーターを記載
+
+def configure_permitted_parameters
+  devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :is_active, :price, :email, :encrypted_password, :postal_code, :address, :telephone_number])
+end
+
+2.customer.rb (customer.newの役割をしている）
+
+こちらの1:N記載でaddressesが複数になっていなかったので
+住所の初期値に異常が出ていた。
+カラムのaddressとcustomer.rbのaddressが被っていた為。
+
