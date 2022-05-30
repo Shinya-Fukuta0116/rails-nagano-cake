@@ -1,5 +1,7 @@
 class Public::OrdersController < ApplicationController
   def new
+    @order = Order.new
+    @orders = current_customer.orders.all
   end
 
   def index
@@ -18,4 +20,12 @@ class Public::OrdersController < ApplicationController
 
   def thanks
   end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:postal_code, :customer_id, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
+
+  end
+
 end

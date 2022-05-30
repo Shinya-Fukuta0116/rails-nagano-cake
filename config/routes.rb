@@ -1,17 +1,8 @@
 Rails.application.routes.draw do
-
-  namespace :pbulic do
-    get 'items/index'
-    get 'items/update'
-    get 'items/create'
-    get 'items/destroy'
-    get 'items/destroy_all'
-  end
   devise_for :admin, skip: [:passwords] ,controllers: {
 
     sessions: "admin/sessions"
   }
-
   #devise for customer
   #URL/customers/sign_in..
 
@@ -19,7 +10,6 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-
 
   root to: 'public/homes#top'
 
@@ -39,9 +29,12 @@ Rails.application.routes.draw do
     get 'orders/confirm'
     get 'orders/thanks'
     patch "withdraw"=> "customers#withdraw"
+    delete 'destroy_all'=> "cart_items#destroy_all"
     resource :customers, only: [:show, :edit, :update]
     resources :orders, only: [:new, :index, :show, :create]
     resources :addresses, only: [:index, :edit, :update, :create, :destroy]
+    resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :update, :create, :destroy]
 
   end
 end

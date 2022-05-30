@@ -1,28 +1,33 @@
-<h2>ログイン</h2>
-
-<%= form_with model: @customer, url: customer_session_path do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="mb-3 row">
+    <h3>ログイン</h3>
+    <%= form_with model: @customer, url: customer_session_path do |f| %>
+    <div class="mb-3 row">
+      <div class="field">
+        <%= f.label :メールアドレス, class: "col-auto" %>
+        <%= f.text_field :email, autofocus: true, autocomplete: "email", size: 40 %>
+      </div>
     </div>
-  <% end %>
+    <div class="mb-3 row">
+      <div class="form-group">
+        <%= f.label :パスワード, class: "col-auto" %>
+        <%= f.password_field :password, autocomplete: "off", size: 40 %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Log in", class: "btn btn-success" %>
-  </div>
-<% end %>
-<br>
-  <div class="text-left">
-    会員がお済みでない方は<%= render "public/shared/links" %>
-  </div>
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Log in", class: "btn btn-success" %>
+      </div>
+    <% end %>
+    <br>
+    <br>
+      <div class="text-align-left">
+        会員がお済みでない方は<%= render "public/shared/links" %>
+      </div>
+</div>

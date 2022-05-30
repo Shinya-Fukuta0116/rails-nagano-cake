@@ -58,3 +58,25 @@ end
 住所の初期値に異常が出ていた。
 カラムのaddressとcustomer.rbのaddressが被っていた為。
 
+----cart_item undefine method----
+current_customerに異常有り、
+relation出来てなかった。
+
+----cart_item削除について----
+                  #ifのブロック変数 ＋ updateのpath (ブロック変数.id)
+<%= form_with model: cart, url: public_cart_item_path(cart.id), local: true do |f| %>
+
+--以下controller--
+def index
+    @cart_items = CartItem.all
+end
+
+def update
+  @cart_items = CartItem.all
+  @cart_item = CartItem.find(params[:id])
+  if @cart_item.update(cart_item_params)
+    redirect_to public_cart_items_path #redirect_to は indexへ#
+  else
+    render 'index' #render は index の viewを読み込むので @cart_items = CartItem.allも追加する。
+  end
+end

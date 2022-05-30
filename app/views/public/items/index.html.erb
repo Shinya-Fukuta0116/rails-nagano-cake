@@ -3,16 +3,16 @@
     <div class="col-3">
       <%= render 'layouts/genres_sidebar', genres: @genres %>
     </div>
-      <div class="col-9">
-        <p class="top-text">
-          ようこそ、NaganoCakeへ！<br>
-          このサイトは、ケーキ販売のECサイトになります。<br>
-          会員でない方も商品の閲覧はできますが、<br>
-          購入には会員登録が必要になります。<br>
-        </p>
-         <div class="recommend-title">
-          <h3>新着商品</h3>
-          <div class = "row">
+    <div class="col-9" >
+      <h1 class="item-title">
+        <% if params[:genre_id] %>
+          <%= @genre.name %>
+        <% else %>
+          <h2>商品一覧</h2>
+        <% end %>
+      </h1>
+        <strong> 全<%= @items.count %>件 </strong><br>
+        <div class = "row">
         <% @items.each do |item| %>
           <div class= "col-sm">
             <%= item.name %><br>
@@ -25,8 +25,7 @@
           </div>
         <% end %>
         </div>
-        </div>
-      </div>
+    </div>
     </div>
   </div>
-</duv>
+</div>

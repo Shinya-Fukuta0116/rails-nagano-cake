@@ -1,0 +1,39 @@
+<div class = "container">
+  <div class = "row">
+    <div class = "col-6">
+      <%= image_tag @item.image, size:"250x250" %>
+      </div>
+      <br>
+        <div class = "col-6">
+          <table class= "table">
+            <tbody>
+              <br>
+              <br>
+              <tr></tr>
+                <tr>
+                  <th><%= @item.name %></th>
+                </tr>
+              <tr></tr>
+                <tr>
+                  <th><%= @item.introduction %></th>
+                </tr>
+              <tr></tr>
+                <tr>
+                  <th>¥<%= @item.add_tax_sales_price.to_s(:dalimited) %>(税込）</th>
+              </tr>
+                 <tr></tr>
+              <tr>
+                <% if customer_signed_in? %>
+                  <%= form_with model: @cart_items, url: public_cart_items_path, local: true do |f| %>
+              <th><%= f.hidden_field :item_id, :value => @item.id %>
+                  <%= f.number_field :amount , placeholder: "個数選択", min: 1, max: 50 %></th>
+              <th><%= f.submit 'カートに入れる', class: "btn-sm btn-primary"%></th>
+              </tr>
+                <% end %>
+      <% end %>
+            </tbody>
+          </table>
+        </div>
+    </div>
+</div>
+

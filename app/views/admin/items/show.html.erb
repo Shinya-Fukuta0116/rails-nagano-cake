@@ -28,7 +28,7 @@
               <tr></tr>
                 <tr>
                    <th>価格</th>
-                  <th><%= @item.price %>円</th>
+                  <th><%= @item.add_tax_sales_price.to_s(:dalimited) %>（<%= @item.price %>）円</th>
               </tr>
                  <tr></tr>
                 <tr>
