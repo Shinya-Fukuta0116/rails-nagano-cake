@@ -2,6 +2,7 @@ class Public::CartItemsController < ApplicationController
   def index
     @cart_items = CartItem.all
     @cart = Item.where(item_id: params[:item_id])
+    @sum = 0
   end
 
   def update
@@ -35,7 +36,7 @@ class Public::CartItemsController < ApplicationController
     redirect_to public_cart_items_path
   end
 
-  def delete_all
+  def destroy_all
     CartItem.destroy_all
     redirect_to public_cart_items_path
   end

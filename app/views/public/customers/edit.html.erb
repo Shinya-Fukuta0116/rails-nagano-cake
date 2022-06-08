@@ -32,14 +32,11 @@
       <%= f.text_field :email, class: "form-control-md" %>
     </div>
       <% end %>
-
-<div class="text-align left">
-  <%= link_to "編集内容を保存", public_customers_path, class: "btn btn-primary" %>
-</div>
-<br>
-<br>
-<div class="text-align right">
-  <%= link_to "退会", public_unsubscribe_path, class: "btn btn-danger" %>
-</div>
+    <div class='btn-toolbar' role="toolbar">
+      <div>
+        <%= link_to "編集内容を保存", public_customers_path, class: "btn btn-primary" %>
+        <%= link_to "退会", public_unsubscribe_path, class: "btn btn-danger" %>
+      </div>
+    </div>
   </div>
 </div>

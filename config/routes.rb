@@ -26,8 +26,8 @@ Rails.application.routes.draw do
     get "about"=> "homes#about"
     get "customers/my_page" => "customers#show"
     get "unsubscribe"=> "customers#unsubscribe"
-    get 'orders/confirm'
     get 'orders/thanks'
+    post 'orders/confirm'
     patch "withdraw"=> "customers#withdraw"
     delete 'destroy_all'=> "cart_items#destroy_all"
     resource :customers, only: [:show, :edit, :update]

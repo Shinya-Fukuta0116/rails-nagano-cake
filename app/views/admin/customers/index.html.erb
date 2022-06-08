@@ -14,7 +14,7 @@
         <% @customers.each do |customer| %>
           <tr>
             <th><%= customer.id %></th>
-            <th><%= customer.first_name %><%= customer.last_name %></th>
+            <th><%= link_to customer.full_name, admin_customer_path(customer.id) %></th>
             <th><%= customer.email %></th>
             <th><%= customer.is_active %></th>
           </tr>

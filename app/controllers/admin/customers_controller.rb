@@ -23,9 +23,11 @@ class Admin::CustomersController < ApplicationController
   end
 
   def edit
+    @customer = Customer.find(params[:id])
   end
 
   def update
+    @customer = Customer.find(params[:id])
   end
 
   private

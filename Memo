@@ -80,3 +80,7 @@ def update
     render 'index' #render は index の viewを読み込むので @cart_items = CartItem.allも追加する。
   end
 end
+
+----登録した住所の表示----
+                                                                          (model内のassosiationがaddresses)
+<%= collection_select(:regestrated_address, :regestrated_address, current_customer.addresses.all, :id, :address, prompt: "住所を選択してください" )%>

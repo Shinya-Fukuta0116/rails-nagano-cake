@@ -12,3 +12,15 @@
             <th>注文詳細</th>
         </tr>
     </thead>
+    <% @orders.each do |order| %>
+      <tbody>
+        <tr>
+            <th><%= order.created_at.to_s(:datetime_jp) %></th>
+            <th><%= order.address %></th>
+            <th><%= order.item %></th>
+            <th><%= order.item.price %></th>
+            <th><%= order.status %></th>
+            <th><%#= %></th>
+        </tr>
+    <% end %>
+      </tbody>
