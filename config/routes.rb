@@ -14,15 +14,15 @@ Rails.application.routes.draw do
   root to: 'public/homes#top'
 
   namespace :admin do
-    root to:"homes#top"
-    get 'orders/show'
-    get 'orders/update'
+    root to: "homes#top"
+    resources :orders, only: [:index, :show, :update]
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+    patch "order_details/:id" => "orders#order_detail_update", as:"order_detail_update"
   end
 
-  namespace :public do
+  scope module: :public do
     get "about"=> "homes#about"
     get "customers/my_page" => "customers#show"
     get "unsubscribe"=> "customers#unsubscribe"

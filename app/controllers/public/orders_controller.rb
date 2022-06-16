@@ -6,30 +6,31 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = current_customer.orders.all
   end
 
   def show
-    current_customer
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details.all
   end
 
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    #if @order.save!
-      #@cart_items = current_customer.cart_items
-      #@cart_items.each do |cart_item|
-        #order_detail = OrderDetail.new(order_id: @order.id)
-        #order_detail.price = cart_item.item.price
-        #order_detail.amount = cart_item.amount
-        #order_detail.item_id = cart_item.item_id
-        #order_detail.save!
-      #end
-      #@cart_items.destroy_all
-      #redirect_to public_orders_thanks_path
-    #else
-      #render "new"
-    #end
+    if @order.save!
+      @cart_items = current_customer.cart_items
+      @cart_items.each do |cart_item|
+        order_detail = OrderDetail.new(order_id: @order.id)
+        order_detail.price = cart_item.item.price
+        order_detail.amount = cart_item.amount
+        order_detail.item_id = cart_item.item_id
+        order_detail.save!
+      end
+      @cart_items.destroy_all
+      redirect_to orders_thanks_path
+    else
+      render "new"
+    end
 
   end
 

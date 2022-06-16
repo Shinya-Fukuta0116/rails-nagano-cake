@@ -84,3 +84,19 @@ end
 ----登録した住所の表示----
                                                                           (model内のassosiationがaddresses)
 <%= collection_select(:regestrated_address, :regestrated_address, current_customer.addresses.all, :id, :address, prompt: "住所を選択してください" )%>
+
+---購入履歴表示方法----
+
+assosiationを確認。ordersにはitem_idはカラムに存在しないので使用不可。
+order_detailsにはorder_detailsにはあるのでこちらを使用。
+orderは@ordersでcurrent_customerのallをeachで取り出した物。
+<% order.order_details.each do |order_detail| %>
+<%= order_detail.item.name %><br> （order_detail内のitemのname表示。）
+<% end %>_
+
+---each内の<th>をループしない方法---
+<th>をeach, endの外に出す。
+
+---controller内のルール---
+@order = Order.find(params[:id]) #id取得時
+@order = Order.find(order_params)#create or updateのとき
