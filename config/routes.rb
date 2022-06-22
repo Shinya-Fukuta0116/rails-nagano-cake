@@ -25,12 +25,13 @@ Rails.application.routes.draw do
   scope module: :public do
     get "about"=> "homes#about"
     get "customers/my_page" => "customers#show"
+    get "customers/my_page_edit" => "customers#edit"
+    patch "customers/my_page_update" => "customers#update"
     get "unsubscribe"=> "customers#unsubscribe"
     get 'orders/thanks'
     post 'orders/confirm'
     patch "withdraw"=> "customers#withdraw"
     delete 'destroy_all'=> "cart_items#destroy_all"
-    resource :customers, only: [:show, :edit, :update]
     resources :orders, only: [:new, :index, :show, :create]
     resources :addresses, only: [:index, :edit, :update, :create, :destroy]
     resources :items, only: [:index, :show]

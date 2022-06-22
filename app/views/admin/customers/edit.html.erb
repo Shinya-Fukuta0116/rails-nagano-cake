@@ -4,7 +4,7 @@
     <br>
     <br>
     <br>
-      <%= form_with model: @customer, url: admin_customer_path, class: "customer_edit" do |f|%>
+      <%= form_with model: @customer, url: admin_customer_path, method: :patch,　class: "customer_edit" do |f|%>
     <div class= "form-group">
       <%= f.label :氏名, class: "col-sm-2" %>
       <%= f.text_field :first_name, class: "form-control-md" %>
@@ -33,13 +33,14 @@
     </div>
     <div class= "form-group">
       <%= f.label :会員ステータス, class: "col-sm-2" %>
-      <%= f.text_field :email, class: "form-control-md" %>
+      <%= f.radio_button :is_active, :true %>
+      有効
+      <%= f.radio_button :is_active, :false %>
+      退会
     </div>
+      <%= f.submit "編集内容を保存", class: "btn btn-primary" %>
       <% end %>
     <div class='btn-toolbar' role="toolbar">
-      <div>
-        <%= link_to "編集内容を保存", admin_customer_path, class: "btn btn-primary" %>
-      </div>
     </div>
   </div>
 </div>

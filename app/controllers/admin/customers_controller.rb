@@ -11,7 +11,7 @@ class Admin::CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
-      redirect_to public_customer_path(@customer)
+      redirect_to customer_path(@customer)
     else
       render "new"
     end
@@ -28,6 +28,13 @@ class Admin::CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
+      @customer.save
+      redirect_to admin_customer_path(@customer)
+    else
+      render "edit"
+    end
+
   end
 
   private

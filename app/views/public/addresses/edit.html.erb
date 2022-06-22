@@ -4,7 +4,7 @@
     <br>
     <br>
     <br>
-     <%= form_with model: @address, url: public_address_path, class: "customer_edit" do |f|%>
+     <%= form_with model: @address, url: address_path, class: "customer_edit" do |f|%>
      <div class= "form-group">
       <%= f.label :郵便番号, class: "col-sm-2" %>
       <%= f.text_field :postal_code, class: "form-control-md" %>
@@ -20,6 +20,6 @@
      <% end %>
 
     <div class="text-align left">
-      <%= link_to "変更内容を保存", public_customers_path, class: "btn btn-primary" %>
+      <%= link_to "変更内容を保存", customers_path, class: "btn btn-primary" %>
     </div>
 </div>
